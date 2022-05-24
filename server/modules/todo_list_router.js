@@ -17,6 +17,18 @@ router.get( '/', (req, res )=>{
 })// end GET route
 
 //post route
+router.post( '/', (req, res )=>{
+    console.log( '/router POST:', req.body );
+    //run INSERT query with sanitized inputs (ex: $1, $2, etc)
+    let queryString = `INSERT INTO to_do ( priority, task ) VALUES ( $1, $2 );`;
+    let values = [ req.body.priority, req.body.task ];
+    pool.query( queryString, values ).then( ( results )=>{
+        res.sendStatus( 200 );
+    }).catch( (err )=>{
+        console.log( err );
+        res.sendStatus( 500 );
+    })
+})
 
 //put route
 

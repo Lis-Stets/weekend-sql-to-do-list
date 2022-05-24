@@ -12,8 +12,53 @@ $( document ).ready( function(){
 });// end doc ready
 
 function setupClickListeners(){
+    $( '#addTaskButton' ).on( 'click', addTask );
     //this function holds all the requests for jQuery to listend for clicks on our buttons and check boxes
 }
+
+function addTask(){
+    console.log( 'in addTask' );
+    let priorityLevel = 0
+    // conditional to determine each task's priority level
+    if( $( '#importanceInput' ).val() === 'Important' && $( '#urgencyInput' ).val() === 'Urgent' ){
+        priorityLevel = 1;
+        console.log( priorityLevel );
+    }
+    else if( $( '#importanceInput' ).val() === 'Important' && $( '#urgencyInput' ).val() === 'Not Urgent' ){
+        priorityLevel = 2;
+        console.log( priorityLevel );
+    } 
+    else if( $( '#importanceInput' ).val() === 'Unimportant' && $( '#urgencyInput' ).val() === 'Urgent' ){
+        priorityLevel = 3;
+        console.log( priorityLevel );
+    }
+    else if( $( '#importanceInput' ).val() === 'Unmportant' && $( '#urgencyInput' ).val() === 'Not Urgent' ){
+        priorityLevel = 4;
+        console.log( priorityLevel );
+    }
+    else{
+        console.log( 'error in priority conditional' );
+    }
+    //collect the input values and put them in an object to send
+    let newTask = {
+        priority: priorityLevel,
+        task: $( '#taskInput' ).val()
+    }
+    console.log( 'sending:', newTask );
+    //make POST request to server to send newTask object
+    $.ajax({
+        method: 'POST',
+        url: '/todo_list_router',
+        data: newTask
+    }).then( function( response ){
+        console.log( 'back from POST:', response );
+        //run get function if successful
+        getTasks();
+    }).catch( function( err ){
+        console.log( err );
+        alert( 'error adding task' );
+    })
+}// end addTask
 
 function getTasks(){
     console.log( 'in getTasks' );
