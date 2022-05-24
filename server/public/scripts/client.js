@@ -34,7 +34,7 @@ function addTask(){
         priorityLevel = 3;
         console.log( priorityLevel );
     }
-    else if( $( '#importanceInput' ).val() === 'Unmportant' && $( '#urgencyInput' ).val() === 'Not Urgent' ){
+    else if( $( '#importanceInput' ).val() === 'Unimportant' && $( '#urgencyInput' ).val() === 'Not Urgent' ){
         priorityLevel = 4;
         console.log( priorityLevel );
     }
@@ -87,10 +87,17 @@ function getTasks(){
         let el = $( '#tasksOutput' );
         el.empty();
         for( let i=0; i<response.length; i++ ){
+           
+            let doneText = "";
+            if( response[i].done ){
+                doneText= "Done.";
+            }
+            let priorityClass = "priorityLevel"+response[i].priority;
+            
             el.append(
                 `<tr>
-                    <td><input type= "checkbox" class="doneCheckbox" data-id="${response[i].id}"/></td>
-                    <td id="priorityLevelOut">${response[i].priority }</td>
+                    <td><input type= "checkbox" class="doneCheckbox" data-id="${response[i].id}"/>${doneText}</td>
+                    <td id="priorityLevelOut" class="${priorityClass}">${response[i].priority }</td>
                     <td>${response[i].task}</td>
                     <td><button class="deleteButton" data-id="${response[i].id}">bin it.</button></td>
                 </tr>`
@@ -153,3 +160,7 @@ function updateDone(){
         alert( 'error updating done status' );
     })//end PUT 
 }// updateDone
+
+function taskDoneCheck(){
+
+}
