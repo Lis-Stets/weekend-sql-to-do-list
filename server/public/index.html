@@ -4,9 +4,64 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="vendors/jquery-3.6.0.min.js"></script>
+    <script src="scripts/client.js"></script>
+    <link rel="stylesheet" href="styles/style.css">
     <title>TO DO</title>
 </head>
 <body>
-    <h1>To Do</h1>
+    <div class="mainContainer">
+        <div class="header">
+            <h1>What's the Plan for the Day?</h1>
+        </div>
+        <div class="inputDiv">
+            <h4>Add a To Do to do today</h4>
+            <div>
+                <input type="text" id="taskInput" class="taskInput" placeholder="To Do">
+            </div>
+            <div class="inputs">
+                <select name="importance" id="importanceInput">
+                    <option>Importance?</option>
+                    <option>Important</option>
+                    <option>Unimportant</option>
+                </select>
+                <select name="urgency" id="urgencyInput">
+                    <option>Urgency?</option>
+                    <option>Urgent</option>
+                    <option>Not Urgent</option>
+                </select>
+                <button id="addTaskButton" class="addTaskButton">Add Task</button>
+            </div>
+        </div>
+        <div class="priorityKeyDiv">
+            <h5>Priority Key:</h5>
+        </div>
+        <div class="taskTableDiv">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Check It Off!</th>
+                        <th>How Much Ado?</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="tasksOutput">
+                    <tr>
+                        <td><input type= "checkbox"/></td>
+                        <td><select>
+                            <option>Update</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                        </select></td>
+                        <td>Be kind to yourself</td>
+                        <td><button class="deleteButton" data-id="">bin it.</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </body>
 </html>
