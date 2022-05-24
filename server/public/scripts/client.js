@@ -12,8 +12,9 @@ $( document ).ready( function(){
 });// end doc ready
 
 function setupClickListeners(){
-    $( '#addTaskButton' ).on( 'click', addTask );
     //this function holds all the requests for jQuery to listend for clicks on our buttons and check boxes
+    $( '#addTaskButton' ).on( 'click', addTask );
+    $( '#tasksOutput' ).on( 'click', '.deleteButton', deleteTask ); //allows us to click a dynamically created button
 }
 
 function addTask(){
@@ -37,7 +38,7 @@ function addTask(){
         console.log( priorityLevel );
     }
     else{
-        console.log( 'error in priority conditional' );
+        priorityLevel = 1;
     }
     //collect the input values and put them in an object to send
     let newTask = {
@@ -60,6 +61,20 @@ function addTask(){
     })
 }// end addTask
 
+function deleteTask(){
+    console.log( 'in deleteTask', $( this ).data( 'id' ) );
+    $.ajax({
+        method: 'DELETE',
+        url: `/todo_list_router?id=${ $( this ).data( 'id' ) }`
+    }).then( function( response ){
+        console.log( response );
+        getTasks();
+    }).catch( function( err ){
+        console.log( err );
+        alert( 'error deleting task' );
+    })//end DELETE
+}// end deleteTask
+
 function getTasks(){
     console.log( 'in getTasks' );
     $.ajax({
@@ -74,21 +89,52 @@ function getTasks(){
             el.append(
                 `<tr>
                     <td><input type= "checkbox"/></td>
-                    <td><select>
-                        <option>Update</option>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                    </select></td>
+                    <td id="priorityLevelOut">${response[i].priority }</td>
                     <td>${response[i].task}</td>
-                    <td><button class="deleteButton" data-id="">bin it.</button></td>
+                    <td><button class="deleteButton" data-id="${response[i].id}">bin it.</button></td>
                 </tr>`
             )
+        }//end for
+
+            // //create variable to hold conditional to style and append priority level
+            // let priorityEl = ${'#priorityLevelOut'};
+            // if( response[i].priority === 1 ){
+            //     priorityLevelOut = `<td style="background-color:#7B0828;"><select>
+            //                             <option>Update</option>
+            //                             <option>1</option>
+            //                             <option>2</option>
+            //                             <option>3</option>
+            //                             <option>4</option>
+            //                         </select></td>`
+            // }//end if priorityLevel 1
+            // else if( response[i].priority === 2 ){
+            //     priorityLevelOut = `<td style="background-color:#FFBD00;"><select>
+            //                             <option>Update</option>
+            //                             <option>1</option>
+            //                             <option>2</option>
+            //                             <option>3</option>
+            //                             <option>4</option>
+            //                         </select></td>`
+            // }//end else if priorityLevel 2
+            // else if( response[i].priority === 3 ){
+            //     priorityLevelOut = `<td style="background-color:#79B473;"><select>
+            //                             <option>Update</option>
+            //                             <option>1</option>
+            //                             <option>2</option>
+            //                             <option>3</option>
+            //                             <option>4</option>
+            //                         </select></td>`
+            // }//end else if priorityLevel 3
+            // else if( response[i].priority === 4 ){
+            //     priorityLevelOut = `<td style="background-color:#A0A4B8;"><select>
+            //                             <option>Update</option>
+            //                             <option>1</option>
+            //                             <option>2</option>
+            //                             <option>3</option>
+            //                             <option>4</option>
+            //                         </select></td>`
+            // }//end else if priorityLevel 4
             //add done conditional here
             // if( response[i].done === true )
-            //add priority conditional here
-                
-        }//end for
     })
-}
+}// end getTasks

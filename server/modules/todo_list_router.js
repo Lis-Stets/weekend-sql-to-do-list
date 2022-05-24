@@ -28,12 +28,22 @@ router.post( '/', (req, res )=>{
         console.log( err );
         res.sendStatus( 500 );
     })
-})
+})// end POST route
 
 //put route
 
 //delete route
-
+router.delete( '/', ( req, res )=>{
+    console.log( 'in delete route', req.query );
+    let queryString = `DELETE FROM to_do WHERE id=$1`;
+    let values = [ req.query.id ];
+    pool.query( queryString, values ).then( ( results )=>{
+        res.sendStatus( 200 );
+    }).catch( ( err )=>{
+        console.log( err );
+        res.sendStatus( 500 );
+    })
+})// end DELETE route
 
 
 module.exports = router;
