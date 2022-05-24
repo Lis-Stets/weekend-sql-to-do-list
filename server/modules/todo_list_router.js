@@ -31,10 +31,23 @@ router.post( '/', (req, res )=>{
 })// end POST route
 
 //put route
+router.put( '/', ( req, res )=>{
+    console.log( '/router PUT:', req.query );
+    //run PUT query with sanitized inputs (ex: $1, $2, etc)
+    let queryString = `UPDATE to_do SET done = NOT COALESCE( done ) WHERE id=$1;`;
+    let values = [ req.query.id ];
+    pool.query( queryString, values ).then( ( results )=>{
+        res.sendStatus( 200 );
+    }).catch( (err)=>{
+        console.log( err );
+        res.sendStatus( 500 );
+    })
+})// end PUT route
 
 //delete route
 router.delete( '/', ( req, res )=>{
-    console.log( 'in delete route', req.query );
+    console.log( '/router DELETE:', req.query );
+    //run DELETE query with sanitized inputs (ex: $1, $2, etc)
     let queryString = `DELETE FROM to_do WHERE id=$1`;
     let values = [ req.query.id ];
     pool.query( queryString, values ).then( ( results )=>{

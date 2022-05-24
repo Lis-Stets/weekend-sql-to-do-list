@@ -13,5 +13,6 @@ INSERT INTO to_do ( priority, task ) VALUES ( '1', 'Be kind to yourself' );
 SELECT * FROM to_do;
 
 UPDATE to_do SET done=true WHERE id=3;
+UPDATE to_do SET done = NOT COALESCE( done ) WHERE id=8;
 
 DELETE FROM to_do WHERE id=6;

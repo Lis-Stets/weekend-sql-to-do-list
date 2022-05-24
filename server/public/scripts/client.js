@@ -15,6 +15,7 @@ function setupClickListeners(){
     //this function holds all the requests for jQuery to listend for clicks on our buttons and check boxes
     $( '#addTaskButton' ).on( 'click', addTask );
     $( '#tasksOutput' ).on( 'click', '.deleteButton', deleteTask ); //allows us to click a dynamically created button
+    $( '#tasksOutput' ).on( 'click', '.doneCheckbox', updateDone ); 
 }
 
 function addTask(){
@@ -58,7 +59,7 @@ function addTask(){
     }).catch( function( err ){
         console.log( err );
         alert( 'error adding task' );
-    })
+    })//end POST
 }// end addTask
 
 function deleteTask(){
@@ -88,7 +89,7 @@ function getTasks(){
         for( let i=0; i<response.length; i++ ){
             el.append(
                 `<tr>
-                    <td><input type= "checkbox"/></td>
+                    <td><input type= "checkbox" class="doneCheckbox" data-id="${response[i].id}"/></td>
                     <td id="priorityLevelOut">${response[i].priority }</td>
                     <td>${response[i].task}</td>
                     <td><button class="deleteButton" data-id="${response[i].id}">bin it.</button></td>
@@ -138,3 +139,17 @@ function getTasks(){
             // if( response[i].done === true )
     })
 }// end getTasks
+
+function updateDone(){
+    console.log( 'in updateDone:', $( this ).data( 'id' ) );
+    $.ajax({
+        method: 'PUT',
+        url: `/todo_list_router?id=${ $( this ).data( 'id' ) }`
+    }).then( function( response ){
+        console.log( response );
+        getTasks();
+    }).catch( function( err ){
+        console.log( err );
+        alert( 'error updating done status' );
+    })//end PUT 
+}// updateDone
