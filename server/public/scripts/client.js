@@ -20,7 +20,12 @@ function setupClickListeners(){
 
 function addTask(){
     console.log( 'in addTask' );
-    let priorityLevel = 0
+    if( $( '#importanceInput' ).val() === 'Importance?' || $( '#urgencyInput' ).val() === 'Urgency?' || $( '#taskInput' ).val() === ''){
+        alert( 'Please fill out all inputs.' );
+        return;
+    }
+
+        let priorityLevel = 0
     // conditional to determine each task's priority level
     if( $( '#importanceInput' ).val() === 'Important' && $( '#urgencyInput' ).val() === 'Urgent' ){
         priorityLevel = 1;

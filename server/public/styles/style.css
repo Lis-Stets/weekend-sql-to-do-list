@@ -1,5 +1,4 @@
 body{
-    background-color: #e8f6ff;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
@@ -61,24 +60,20 @@ td{
 
 .priorityLevel1{
     background-color: #7b0829c3;
-    color: white;
     text-align: center;
 }
 
 .priorityLevel2{
-    background-color: #FFBD00;
-    color: white;
+    background-color: #ffbb007c;
     text-align: center;
 }
 
 .priorityLevel3{
     background-color: #79B473;
-    color: white;
     text-align: center;
 }
 
 .priorityLevel4{
     background-color: #A0A4B8;
-    color: white;
     text-align: center;
 }
