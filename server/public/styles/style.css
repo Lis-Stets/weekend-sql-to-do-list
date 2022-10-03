@@ -1,14 +1,15 @@
 body{
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background-color: #364958;
 }
 
 .mainContainer{
-    background-color: #f9f7cb7a;
+    background-color: #FEFCFD;
     border-radius: 5px;
     margin: 5%;
     width: auto;
     height: auto;
-    border: 15px solid #214E34;
+    border: 15px solid #56A3A6;
     padding: 15px;
 }
 
@@ -19,7 +20,7 @@ h1{
 }
 
 .inputDiv{
-    border: 5px solid #214E34;
+    border: 5px solid #364958;
     border-radius: 5px;
     padding: 15px;
     padding-top: 5px;
@@ -39,37 +40,37 @@ h4{
 
 .priorityKeyDiv{
     margin: 15px;
-    border: 5px solid #214E34;
+    border: 5px solid #364958;
     padding: 5px;
 }
 
 table{
-    border: 3px solid #214E34;
+    border: 3px solid #364958;
     border-collapse: collapse;
 }
 
 th{
-    border: 3px solid #214E34;
+    border: 3px solid #364958;
     border-collapse: collapse;
 }
 
 td{
-    border: 3px solid #214E34;
+    border: 3px solid #364958;
     border-collapse: collapse;
 }
 
 .priorityLevel1{
-    background-color: #7b0829c3;
+    background-color: #CA054D;
     text-align: center;
 }
 
 .priorityLevel2{
-    background-color: #ffbb007c;
+    background-color: #FFD400;
     text-align: center;
 }
 
 .priorityLevel3{
-    background-color: #79B473;
+    background-color: #63C132;
     text-align: center;
 }
 
