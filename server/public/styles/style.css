@@ -35,13 +35,14 @@ h4{
     margin-left: auto;
     margin-right: auto;
     width: 100%;
+    border-radius: 5px;
 }
-
 
 .priorityKeyDiv{
     margin: 15px;
     border: 5px solid #364958;
     padding: 5px;
+    border-radius: 5px;
 }
 .priorityTable{
     margin-left: auto;
@@ -50,9 +51,28 @@ h4{
     text-align: center;
 }
 
+.priority1{
+    background-color: #ca054d;
+}
+
+.priority2{
+    background-color: #FFD400;
+}
+
+.priority3{
+    background-color: #63C132;
+}
+
+.priority4{
+    background-color: #A0A4B8;
+}
+
 table{
     border: 3px solid #364958;
     border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
 }
 
 th{
@@ -65,6 +85,14 @@ td{
     border-collapse: collapse;
 }
 
+.taskTableDiv{
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    align-items: center;
+    border: 5px solid #364958;
+    border-radius: 5px;
+}
 .priorityLevel1{
     background-color: #CA054D;
     text-align: center;
